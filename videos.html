@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos | Vedu's World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+
+        .logo span {
+            color: #4ecdc4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .page-header {
+            padding: 120px 40px 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .videos-container {
+            padding: 20px 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            margin-bottom: 60px;
+        }
+
+        .video-section h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-info {
+            padding: 25px;
+        }
+
+        .video-info h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .video-info p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .video-date {
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .video-emoji {
+            font-size: 24px;
+        }
+
+        /* Feature Banner */
+        .feature-banner {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-banner h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .feature-banner p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 36px;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Vedu's <span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="videos.html" class="active">Videos</a></li>
+            <li><a href="wishes.html">Wishes</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>🎬 Video Gallery</h1>
+        <p>Watch Vedu's precious moments come to life!</p>
+    </div>
+
+    <div class="videos-container">
+        <!-- Feature Banner -->
+        <div class="feature-banner">
+            <h2>🎒 First Day at School</h2>
+            <p>March 10, 2026 - A day we'll always remember!</p>
+        </div>
+
+        <!-- First Day Videos -->
+        <div class="video-section">
+            <h2>✨ The Big Day</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="WhatsApp Video 2026-03-10 at 10.31.39 AM.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <span class="video-badge">🎉 Special Day</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>Getting Ready for School</h3>
+                        <p>The excitement and anticipation as Vedu gets ready for his very first day at school. Look at that adorable enthusiasm!</p>
+                        <div class="video-meta">
+                            <span class="video-date">📅 March 10, 2026</span>
+                            <span class="video-emoji">😊</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="WhatsApp Video 2026-03-10 at 10.22.09 AM.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <span class="video-badge">⭐ Milestone</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>Off to School!</h3>
+                        <p>Watch our brave little Vedu walking towards school, ready to start his learning journey. So proud!</p>
+                        <div class="video-meta">
+                            <span class="video-date">📅 March 10, 2026</span>
+                            <span class="video-emoji">🎒</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Moments -->
+        <div class="video-section">
+            <h2>💖 More Cute Moments</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="WhatsApp Video 2026-02-24 at 7.13.37 PM.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3>Fun Times</h3>
+                        <p>Vedu being his adorable self, spreading joy wherever he goes!</p>
+                        <div class="video-meta">
+                            <span class="video-date">📅 February 24, 2026</span>
+                            <span class="video-emoji">🌟</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="WhatsApp Video 2026-02-24 at 7.08.05 PM.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-info">
+                        <h3>Playful Vibes</h3>
+                        <p>Capturing the everyday moments that make Vedu so special to us all!</p>
+                        <div class="video-meta">
+                            <span class="video-date">📅 February 24, 2026</span>
+                            <span class="video-emoji">🎮</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ for Vedu | Vedant Pathak</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Vedu's World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+
+        .logo span {
+            color: #4ecdc4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .page-header {
+            padding: 120px 40px 60px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .gallery-container {
+            padding: 20px 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-section {
+            margin-bottom: 60px;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 28px;
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .gallery-item .caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-item .caption h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .gallery-item .caption p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .gallery-item .date {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 36px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Vedu's <span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="videos.html">Videos</a></li>
+            <li><a href="wishes.html">Wishes</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>📸 Photo Gallery</h1>
+        <p>Capturing all the precious moments of our little star!</p>
+    </div>
+
+    <div class="gallery-container">
+        <!-- First Day at School -->
+        <div class="gallery-section">
+            <h2>🎒 First Day at School - March 10, 2026</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-03-10 at 10.40.36 PM.jpeg" alt="Vedu's first day">
+                    <div class="caption">
+                        <h3>Ready for School! 🌟</h3>
+                        <p>All set for the big adventure!</p>
+                        <span class="date">March 10, 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cute Moments -->
+        <div class="gallery-section">
+            <h2>💖 Cute Moments</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-02-15 at 11.51.15 AM.jpeg" alt="Vedu playing">
+                    <div class="caption">
+                        <h3>Playful Vedu 🎮</h3>
+                        <p>Always full of energy and smiles!</p>
+                        <span class="date">February 15, 2026</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="WhatsApp Image 2026-01-20 at 10.39.44 PM.jpeg" alt="Vedu smiling">
+                    <div class="caption">
+                        <h3>That Adorable Smile 😊</h3>
+                        <p>Melting hearts everywhere!</p>
+                        <span class="date">January 20, 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img src="" id="lightbox-img">
+    </div>
+
+    <footer>
+        <p>Made with ❤️ for Vedu | Vedant Pathak</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.getElementById('lightbox-img').src = img.src;
+                document.getElementById('lightbox').classList.add('active');
+            });
+        });
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
