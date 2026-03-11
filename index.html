@@ -19,7 +19,6 @@
             overflow-x: hidden;
         }
 
-        /* Floating decorations */
         .decoration {
             position: fixed;
             font-size: 40px;
@@ -41,7 +40,6 @@
             50% { transform: translateY(-20px) rotate(10deg); }
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -85,7 +83,26 @@
             color: white;
         }
 
-        /* Hero Section */
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #ff6b6b;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -223,7 +240,6 @@
             color: white;
         }
 
-        /* Stats Section */
         .stats {
             padding: 60px 40px;
             display: flex;
@@ -258,7 +274,6 @@
             font-size: 14px;
         }
 
-        /* Video Section */
         .video-section {
             padding: 80px 40px;
             background: white;
@@ -318,7 +333,6 @@
             font-size: 14px;
         }
 
-        /* Gallery Preview */
         .gallery-preview {
             padding: 80px 40px;
             position: relative;
@@ -351,7 +365,6 @@
             object-fit: cover;
         }
 
-        /* Message Section */
         .message-section {
             padding: 80px 40px;
             background: white;
@@ -389,7 +402,6 @@
             margin-top: 20px;
         }
 
-        /* Footer */
         footer {
             background: #333;
             color: white;
@@ -416,33 +428,43 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 40px;
-            }
-            .hero-image {
-                width: 200px;
-                height: 200px;
-            }
+            .hero h1 { font-size: 40px; }
+            .hero-image { width: 200px; height: 200px; }
+
+            .hamburger { display: flex; }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
-            .video-grid {
-                grid-template-columns: 1fr;
+
+            .nav-links.open { display: flex; }
+
+            .nav-links li { width: 100%; }
+
+            .nav-links a {
+                display: block;
+                text-align: center;
+                padding: 12px;
+                border-radius: 10px;
             }
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats {
-                gap: 20px;
-            }
-            .stat-card {
-                padding: 20px 30px;
-            }
+
+            .video-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats { gap: 20px; }
+            .stat-card { padding: 20px 30px; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Decorations -->
     <div class="decoration">🎈</div>
     <div class="decoration">📚</div>
     <div class="decoration">✏️</div>
@@ -450,10 +472,14 @@
     <div class="decoration">⭐</div>
     <div class="decoration">🎨</div>
 
-    <!-- Navigation -->
     <nav>
         <div class="logo">Vedu's <span>World</span></div>
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="videos.html">Videos</a></li>
@@ -461,7 +487,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <span class="hero-badge">🎉 Big Milestone! 🎉</span>
@@ -485,12 +510,11 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats">
         <div class="stat-card">
             <div class="stat-icon">🎂</div>
-            <div class="stat-number" id="age-display">2.5</div>
-            <div class="stat-label">Years Young</div>
+            <div class="stat-number" id="age-years">2</div>
+            <div class="stat-label" id="age-label">Years Young</div>
             <div class="stat-label" style="font-size: 11px; margin-top: 5px; color: #aaa;">Born: Aug 3, 2023</div>
         </div>
         <div class="stat-card">
@@ -510,7 +534,6 @@
         </div>
     </section>
 
-    <!-- Video Preview -->
     <section class="video-section">
         <div class="section-header">
             <h2>🎬 The Big Day</h2>
@@ -538,7 +561,6 @@
         </div>
     </section>
 
-    <!-- Gallery Preview -->
     <section class="gallery-preview">
         <div class="section-header">
             <h2>📸 Photo Gallery</h2>
@@ -560,7 +582,6 @@
         </div>
     </section>
 
-    <!-- Message Section -->
     <section class="message-section">
         <div class="message-card">
             <h3>💫 A Special Message for Vedu</h3>
@@ -571,16 +592,30 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>Made with <span class="heart">❤️</span> for Vedu | Vedant Pathak</p>
         <p>March 2026</p>
     </footer>
 
     <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
         // Calculate age from birth date
         function calculateAge() {
-            const birthDate = new Date('2023-08-03'); // August 3, 2023
+            const birthDate = new Date('2023-08-03');
             const today = new Date();
 
             let years = today.getFullYear() - birthDate.getFullYear();
@@ -591,19 +626,13 @@
                 months += 12;
             }
 
-            // Adjust for day of month
-            if (today.getDate() < birthDate.getDate()) {
-                months--;
-            }
+            if (today.getDate() < birthDate.getDate()) months--;
+            if (months < 0) months += 12;
 
-            if (months < 0) {
-                months += 12;
-            }
-
-            const ageDisplay = document.getElementById('age-display');
-            if (ageDisplay) {
-                ageDisplay.textContent = `${years}.${months}`;
-            }
+            const ageEl = document.getElementById('age-years');
+            const labelEl = document.getElementById('age-label');
+            if (ageEl) ageEl.textContent = `${years}y ${months}m`;
+            if (labelEl) labelEl.textContent = 'Years Young';
         }
 
         calculateAge();
