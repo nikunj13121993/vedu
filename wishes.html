@@ -6,11 +6,7 @@
     <title>Wishes | Vedu's World</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Nunito', sans-serif;
@@ -31,298 +27,132 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .logo {
-            font-family: 'Fredoka One', cursive;
-            font-size: 24px;
-            color: #ff6b6b;
-        }
+        .logo { font-family: 'Fredoka One', cursive; font-size: 24px; color: #ff6b6b; }
+        .logo span { color: #4ecdc4; }
 
-        .logo span {
-            color: #4ecdc4;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
+        .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 20px;
+            text-decoration: none; color: #333; font-weight: 600;
+            transition: all 0.3s; padding: 8px 16px; border-radius: 20px;
         }
+        .nav-links a:hover, .nav-links a.active { background: #ff6b6b; color: white; }
 
-        .nav-links a:hover, .nav-links a.active {
-            background: #ff6b6b;
-            color: white;
+        /* Hamburger */
+        .hamburger {
+            display: none; flex-direction: column; cursor: pointer;
+            gap: 5px; background: none; border: none; padding: 5px;
         }
+        .hamburger span { display: block; width: 25px; height: 3px; background: #ff6b6b; border-radius: 3px; }
 
-        .page-header {
-            padding: 120px 40px 40px;
-            text-align: center;
-        }
+        .page-header { padding: 120px 40px 40px; text-align: center; }
+        .page-header h1 { font-family: 'Fredoka One', cursive; font-size: 48px; color: #333; margin-bottom: 10px; }
+        .page-header p { color: #666; font-size: 18px; }
 
-        .page-header h1 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 48px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+        .wishes-container { padding: 20px 40px 80px; max-width: 900px; margin: 0 auto; }
 
-        .page-header p {
-            color: #666;
-            font-size: 18px;
-        }
-
-        .wishes-container {
-            padding: 20px 40px 80px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Hero Message */
         .hero-message {
-            background: white;
-            border-radius: 30px;
-            padding: 50px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            margin-bottom: 50px;
+            background: white; border-radius: 30px; padding: 50px;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1); margin-bottom: 50px;
         }
-
         .hero-message .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #ff6b6b;
-            margin-bottom: 20px;
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 5px solid #ff6b6b; margin-bottom: 20px;
         }
+        .hero-message h2 { font-family: 'Fredoka One', cursive; font-size: 36px; color: #ff6b6b; margin-bottom: 20px; }
+        .hero-message p { font-size: 18px; color: #555; line-height: 1.8; margin-bottom: 15px; }
+        .hero-message .signature { font-family: 'Fredoka One', cursive; color: #4ecdc4; font-size: 24px; margin-top: 20px; }
 
-        .hero-message h2 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 36px;
-            color: #ff6b6b;
-            margin-bottom: 20px;
-        }
-
-        .hero-message p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .hero-message .signature {
-            font-family: 'Fredoka One', cursive;
-            color: #4ecdc4;
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        /* Wishes Grid */
-        .wishes-grid {
-            display: grid;
-            gap: 25px;
-        }
+        .wishes-grid { display: grid; gap: 25px; }
 
         .wish-card {
-            background: white;
-            border-radius: 25px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
+            background: white; border-radius: 25px; padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden;
         }
-
         .wish-card::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 120px;
-            font-family: Georgia, serif;
-            color: #ff6b6b;
-            opacity: 0.1;
+            content: '"'; position: absolute; top: -20px; left: 20px;
+            font-size: 120px; font-family: Georgia, serif; color: #ff6b6b; opacity: 0.1;
         }
-
-        .wish-card .from {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
+        .wish-card .from { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
         .wish-card .from-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 50px; height: 50px; border-radius: 50%;
             background: linear-gradient(135deg, #ff6b6b, #fcb69f);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
+            display: flex; align-items: center; justify-content: center; font-size: 24px;
+        }
+        .wish-card .from-name { font-family: 'Fredoka One', cursive; font-size: 20px; color: #333; }
+        .wish-card .from-relation { font-size: 14px; color: #888; }
+        .wish-card .message { font-size: 16px; color: #555; line-height: 1.8; position: relative; z-index: 1; }
+
+        /* New wish animation */
+        .wish-card.new-wish { animation: slideIn 0.5s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .wish-card .from-name {
-            font-family: 'Fredoka One', cursive;
-            font-size: 20px;
-            color: #333;
-        }
-
-        .wish-card .from-relation {
-            font-size: 14px;
-            color: #888;
-        }
-
-        .wish-card .message {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Add Wish Form */
         .add-wish {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 30px;
-            padding: 50px;
-            margin-top: 50px;
-            color: white;
+            border-radius: 30px; padding: 50px; margin-top: 50px; color: white;
         }
+        .add-wish h3 { font-family: 'Fredoka One', cursive; font-size: 28px; margin-bottom: 20px; text-align: center; }
+        .add-wish p { text-align: center; opacity: 0.9; margin-bottom: 30px; }
 
-        .add-wish h3 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 15px 20px; border: none; border-radius: 15px;
+            font-size: 16px; font-family: 'Nunito', sans-serif;
         }
-
-        .add-wish p {
-            text-align: center;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            font-family: 'Nunito', sans-serif;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: none;
-        }
+        .form-group textarea { height: 120px; resize: none; }
 
         .btn-submit {
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: block;
-            margin: 0 auto;
+            background: white; color: #667eea; border: none; padding: 15px 40px;
+            border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; display: block; margin: 0 auto; font-family: 'Nunito', sans-serif;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .loading-indicator {
+            text-align: center; padding: 30px; color: #888; font-size: 18px; display: none;
         }
 
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Fun Facts */
         .fun-facts {
-            margin-top: 60px;
+            background: white; border-radius: 30px; padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); margin-top: 50px;
         }
+        .fun-facts h2 { font-family: 'Fredoka One', cursive; font-size: 36px; color: #333; text-align: center; margin-bottom: 30px; }
+        .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .fact-card { background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 20px; padding: 25px; text-align: center; }
+        .fact-card .emoji { font-size: 36px; margin-bottom: 10px; }
+        .fact-card h4 { font-family: 'Fredoka One', cursive; color: #333; margin-bottom: 8px; }
+        .fact-card p { color: #666; font-size: 14px; }
 
-        .fun-facts h2 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 32px;
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .fact-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .fact-card .emoji {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .fact-card h4 {
-            font-family: 'Fredoka One', cursive;
-            color: #ff6b6b;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .fact-card p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 40px;
-        }
-
-        footer p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
+        footer { background: #333; color: white; text-align: center; padding: 40px; }
+        footer p { font-size: 14px; opacity: 0.8; }
 
         @media (max-width: 768px) {
+            .hamburger { display: flex; }
             .nav-links {
-                display: none;
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background: white; flex-direction: column; padding: 20px; gap: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
-            .page-header h1 {
-                font-size: 36px;
-            }
-            .hero-message {
-                padding: 30px;
-            }
-            .add-wish {
-                padding: 30px;
-            }
+            .nav-links.open { display: flex; }
+            .nav-links li { width: 100%; }
+            .nav-links a { display: block; text-align: center; padding: 12px; border-radius: 10px; }
+            .page-header h1 { font-size: 32px; }
+            .wishes-container { padding: 20px 20px 80px; }
+            .hero-message { padding: 30px; }
+            .add-wish { padding: 30px; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">Vedu's <span>World</span></div>
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="videos.html">Videos</a></li>
@@ -336,7 +166,6 @@
     </div>
 
     <div class="wishes-container">
-        <!-- Hero Message -->
         <div class="hero-message">
             <img src="WhatsApp Image 2026-03-10 at 10.40.36 PM.jpeg" alt="Vedu" class="avatar">
             <h2>Dear Vedant (Vedu) 💫</h2>
@@ -346,8 +175,10 @@
             <div class="signature">With all our love 💖</div>
         </div>
 
-        <!-- Wishes Grid -->
+        <div class="loading-indicator" id="loading">⏳ Loading wishes...</div>
+
         <div class="wishes-grid" id="wishes-container">
+            <!-- Static wishes -->
             <div class="wish-card">
                 <div class="from">
                     <div class="from-icon">👨‍👩‍👧</div>
@@ -358,7 +189,6 @@
                 </div>
                 <p class="message">Dear Vedu, watching you take your first steps towards school fills our hearts with so much pride and joy. You're growing up so fast! May this new chapter bring you wonderful friends, amazing teachers, and countless happy memories. We love you to the moon and back! 🌙✨</p>
             </div>
-
             <div class="wish-card">
                 <div class="from">
                     <div class="from-icon">🌟</div>
@@ -369,7 +199,6 @@
                 </div>
                 <p class="message">Our little superstar Vedu! You're embarking on such an exciting adventure. School is where you'll make your best friends, learn amazing things, and discover your passions. Enjoy every moment, ask lots of questions, and never stop being your wonderful self! We're cheering for you! 🎉</p>
             </div>
-
             <div class="wish-card">
                 <div class="from">
                     <div class="from-icon">🎂</div>
@@ -381,58 +210,34 @@
                 <p class="message">Happy First Day of School, Vedu! 🎒 May your backpack always be filled with curiosity, your heart with courage, and your days with laughter. You're going to rock this school thing! Can't wait to hear all about your adventures. Go shine bright, little one! ⭐</p>
             </div>
 
-            <!-- User submitted wishes will appear here -->
+            <!-- User submitted wishes appear here -->
             <div id="user-wishes"></div>
         </div>
 
-        <!-- Fun Facts -->
         <div class="fun-facts">
             <h2>🎈 Fun Facts About Vedu</h2>
             <div class="facts-grid">
-                <div class="fact-card">
-                    <div class="emoji">🎂</div>
-                    <h4>Birthday</h4>
-                    <p>August 3, 2023</p>
-                </div>
-                <div class="fact-card">
-                    <div class="emoji">🎂</div>
-                    <h4>Age</h4>
-                    <p id="vedu-age">2.5 years young!</p>
-                </div>
-                <div class="fact-card">
-                    <div class="emoji">🎒</div>
-                    <h4>School Status</h4>
-                    <p>Officially a student!</p>
-                </div>
-                <div class="fact-card">
-                    <div class="emoji">⭐</div>
-                    <h4>Superpower</h4>
-                    <p>Making everyone smile!</p>
-                </div>
-                <div class="fact-card">
-                    <div class="emoji">💖</div>
-                    <h4>Loved By</h4>
-                    <p>Everyone he meets!</p>
-                </div>
+                <div class="fact-card"><div class="emoji">🎂</div><h4>Birthday</h4><p>August 3, 2023</p></div>
+                <div class="fact-card"><div class="emoji">🎂</div><h4>Age</h4><p id="vedu-age">calculating...</p></div>
+                <div class="fact-card"><div class="emoji">🎒</div><h4>School Status</h4><p>Officially a student!</p></div>
+                <div class="fact-card"><div class="emoji">⭐</div><h4>Superpower</h4><p>Making everyone smile!</p></div>
+                <div class="fact-card"><div class="emoji">💖</div><h4>Loved By</h4><p>Everyone he meets!</p></div>
             </div>
         </div>
 
-        <!-- Add Wish Form -->
         <div class="add-wish">
             <h3>✍️ Leave a Wish for Vedu</h3>
             <p>Share your love and blessings for his school journey!</p>
-            <form id="wish-form">
-                <div class="form-group">
-                    <input type="text" id="wish-name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="wish-relation" placeholder="Your Relation (e.g., Uncle, Aunt, Friend)">
-                </div>
-                <div class="form-group">
-                    <textarea id="wish-message" placeholder="Write your heartfelt wish for Vedu..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Send Wish 💝</button>
-            </form>
+            <div class="form-group">
+                <input type="text" id="wish-name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="wish-relation" placeholder="Your Relation (e.g., Uncle, Aunt, Friend)">
+            </div>
+            <div class="form-group">
+                <textarea id="wish-message" placeholder="Write your heartfelt wish for Vedu..." required></textarea>
+            </div>
+            <button class="btn-submit" id="submit-btn" onclick="submitWish()">Send Wish 💝</button>
         </div>
     </div>
 
@@ -441,63 +246,73 @@
     </footer>
 
     <script>
-        // Calculate and display age
+        const BIN_ID = '69b12b4bb7ec241ddc5c0f3d';
+        const API_KEY = '$2a$10$wnUmGzbONXdVHdISPDy94uhM2aLOKCj2Y9Tx4Qn1LN/lqSD1i1y0G';
+        const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+        const emojis = ['💖', '🌟', '🎉', '✨', '💝', '🎈', '🌈', '💫', '⭐', '🌸'];
+
+        // Hamburger menu
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('nav-links').classList.toggle('open');
+        });
+
+        // Calculate age
         function calculateAge() {
             const birthDate = new Date('2023-08-03');
             const today = new Date();
             let years = today.getFullYear() - birthDate.getFullYear();
             let months = today.getMonth() - birthDate.getMonth();
-
-            if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) {
-                years--;
-                months += 12;
-            }
-
-            const ageElement = document.getElementById('vedu-age');
-            if (ageElement) {
-                ageElement.textContent = `${years} years, ${months} months`;
-            }
+            if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) { years--; months += 12; }
+            if (today.getDate() < birthDate.getDate()) months--;
+            if (months < 0) months += 12;
+            document.getElementById('vedu-age').textContent = `${years} years, ${months} months`;
         }
 
-        // Emoji options for random selection
-        const emojis = ['💖', '🌟', '🎉', '✨', '💝', '🎈', '🌈', '💫', '⭐', '🌸'];
-
-        // Load wishes from localStorage
-        function loadWishes() {
-            const wishes = JSON.parse(localStorage.getItem('veduWishes') || '[]');
-            const container = document.getElementById('user-wishes');
-
-            container.innerHTML = '';
-
-            wishes.forEach(wish => {
-                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-                const wishCard = document.createElement('div');
-                wishCard.className = 'wish-card';
-                wishCard.innerHTML = `
-                    <div class="from">
-                        <div class="from-icon">${randomEmoji}</div>
-                        <div>
-                            <div class="from-name">${escapeHtml(wish.name)}</div>
-                            <div class="from-relation">${escapeHtml(wish.relation || 'Well-wisher')}</div>
-                        </div>
-                    </div>
-                    <p class="message">${escapeHtml(wish.message)}</p>
-                `;
-                container.appendChild(wishCard);
-            });
-        }
-
-        // Escape HTML to prevent XSS
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        // Handle form submission
-        document.getElementById('wish-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function renderWish(wish, isNew = false) {
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const card = document.createElement('div');
+            card.className = 'wish-card' + (isNew ? ' new-wish' : '');
+            card.innerHTML = `
+                <div class="from">
+                    <div class="from-icon">${emoji}</div>
+                    <div>
+                        <div class="from-name">${escapeHtml(wish.name)}</div>
+                        <div class="from-relation">${escapeHtml(wish.relation || 'Well-wisher')}</div>
+                    </div>
+                </div>
+                <p class="message">${escapeHtml(wish.message)}</p>
+            `;
+            return card;
+        }
 
+        // Load wishes from JSONBin
+        async function loadWishes() {
+            document.getElementById('loading').style.display = 'block';
+            try {
+                const res = await fetch(BIN_URL + '/latest', {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await res.json();
+                const wishes = data.record.wishes || [];
+                const container = document.getElementById('user-wishes');
+                container.innerHTML = '';
+                wishes.forEach(wish => {
+                    container.prepend(renderWish(wish));
+                });
+            } catch (err) {
+                console.error('Failed to load wishes:', err);
+            }
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Submit wish to JSONBin
+        async function submitWish() {
             const name = document.getElementById('wish-name').value.trim();
             const relation = document.getElementById('wish-relation').value.trim();
             const message = document.getElementById('wish-message').value.trim();
@@ -507,48 +322,58 @@
                 return;
             }
 
-            // Get existing wishes
-            const wishes = JSON.parse(localStorage.getItem('veduWishes') || '[]');
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Sending...';
 
-            // Add new wish
-            wishes.unshift({
-                name: name,
-                relation: relation,
-                message: message,
-                timestamp: new Date().toISOString()
-            });
+            try {
+                // Get current wishes
+                const res = await fetch(BIN_URL + '/latest', {
+                    headers: { 'X-Master-Key': API_KEY }
+                });
+                const data = await res.json();
+                const wishes = data.record.wishes || [];
 
-            // Save to localStorage
-            localStorage.setItem('veduWishes', JSON.stringify(wishes));
+                // Add new wish
+                const newWish = { name, relation, message, timestamp: new Date().toISOString() };
+                wishes.push(newWish);
 
-            // Clear form
-            document.getElementById('wish-name').value = '';
-            document.getElementById('wish-relation').value = '';
-            document.getElementById('wish-message').value = '';
+                // Save back to JSONBin
+                await fetch(BIN_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify({ wishes })
+                });
 
-            // Show success message
-            showSuccessMessage();
+                // Add to page instantly without reload
+                const container = document.getElementById('user-wishes');
+                container.prepend(renderWish(newWish, true));
 
-            // Reload wishes display
-            loadWishes();
-        });
+                // Clear form
+                document.getElementById('wish-name').value = '';
+                document.getElementById('wish-relation').value = '';
+                document.getElementById('wish-message').value = '';
 
-        // Show success message
-        function showSuccessMessage() {
-            const btn = document.querySelector('.btn-submit');
-            const originalText = btn.textContent;
-            btn.textContent = '✅ Wish Sent!';
-            btn.style.background = '#4ecdc4';
-            btn.style.color = 'white';
+                btn.textContent = '✅ Wish Sent!';
+                btn.style.background = '#4ecdc4';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.textContent = 'Send Wish 💝';
+                    btn.style.background = 'white';
+                    btn.style.color = '#667eea';
+                    btn.disabled = false;
+                }, 2000);
 
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = 'white';
-                btn.style.color = '#667eea';
-            }, 2000);
+            } catch (err) {
+                alert('Failed to send wish. Please try again!');
+                btn.textContent = 'Send Wish 💝';
+                btn.disabled = false;
+            }
         }
 
-        // Initialize
         calculateAge();
         loadWishes();
     </script>
